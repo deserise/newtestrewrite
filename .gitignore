@@ -1,0 +1,19 @@
+# 依赖目录
+node_modules/
+
+# 本地数据库（Cloudflare使用D1）
+users.db
+
+# 锁文件
+package-lock.json
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# IDE配置
+.vscode/
+.idea/
+
+# 本地开发用的后端（Cloudflare不需要）
+# server.js 保留但不使用

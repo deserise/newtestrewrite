@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="消息重写工具 - 将您的消息转换为更礼貌、专业或友好的版本">
+    <title>消息重写助手 | MessageRewriter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth.css">
+</head>
+
+<body>
+    <!-- 背景装饰 -->
+    <div class="bg-decoration">
+        <div class="bg-gradient-1"></div>
+        <div class="bg-gradient-2"></div>
+        <div class="bg-grid"></div>
+    </div>
+
+    <div class="container">
+        <!-- 用户信息栏 -->
+        <div id="userBar"></div>
+
+        <!-- 头部区域 -->
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M4 8C4 5.79086 5.79086 4 8 4H24C26.2091 4 28 5.79086 28 8V20C28 22.2091 26.2091 24 24 24H18L12 28V24H8C5.79086 24 4 22.2091 4 20V8Z"
+                            fill="url(#logo-gradient)" />
+                        <path d="M10 12H22M10 16H18" stroke="white" stroke-width="2" stroke-linecap="round" />
+                        <defs>
+                            <linearGradient id="logo-gradient" x1="4" y1="4" x2="28" y2="28"
+                                gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#3B82F6" />
+                                <stop offset="1" stop-color="#EF4444" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <span class="logo-text">消息重写助手</span>
+            </div>
+            <p class="tagline">让每一条消息都恰到好处 ✨</p>
+        </header>
+
+        <!-- 主要内容区域 -->
+        <main class="main-content">
+            <!-- 输入区域 -->
+            <section class="input-section">
+                <div class="section-header">
+                    <h2>📝 输入您的消息</h2>
+                    <span class="char-count" id="charCount">0 / 2000</span>
+                </div>
+                <textarea id="inputText" class="text-input" placeholder="在这里粘贴或输入您想要重写的消息...
+
+例如：
+• 催促客户回复的消息
+• 拒绝报价的邮件
+• 项目延期的通知
+• 询问合作意向的信息" maxlength="2000"></textarea>
+            </section>
+
+            <!-- 风格选择区域 -->
+            <section class="style-section">
+                <h3>🎨 选择重写风格</h3>
+                <div class="style-options">
+                    <button class="style-btn active" data-style="polite">
+                        <span class="style-icon">🤝</span>
+                        <span class="style-name">礼貌</span>
+                        <span class="style-desc">温和有礼，尊重对方</span>
+                    </button>
+                    <button class="style-btn" data-style="professional">
+                        <span class="style-icon">💼</span>
+                        <span class="style-name">专业</span>
+                        <span class="style-desc">正式商务，清晰简洁</span>
+                    </button>
+                    <button class="style-btn" data-style="friendly">
+                        <span class="style-icon">😊</span>
+                        <span class="style-name">友好</span>
+                        <span class="style-desc">亲切热情，拉近距离</span>
+                    </button>
+                    <button class="style-btn" data-style="warning">
+                        <span class="style-icon">⚠️</span>
+                        <span class="style-name">警告</span>
+                        <span class="style-desc">严肃正式，强调后果</span>
+                    </button>
+                    <button class="style-btn" data-style="tactful">
+                        <span class="style-icon">🎭</span>
+                        <span class="style-name">委婉</span>
+                        <span class="style-desc">婉转表达，照顾感受</span>
+                    </button>
+                    <button class="style-btn" data-style="encouraging">
+                        <span class="style-icon">💪</span>
+                        <span class="style-name">鼓励</span>
+                        <span class="style-desc">积极正向，激励人心</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- 重写按钮 -->
+            <button id="rewriteBtn" class="rewrite-btn">
+                <span class="btn-text">✨ 开始重写</span>
+                <span class="btn-loading">
+                    <svg class="spinner" width="20" height="20" viewBox="0 0 24 24">
+                        <circle class="spinner-track" cx="12" cy="12" r="10" fill="none" stroke-width="3" />
+                        <circle class="spinner-fill" cx="12" cy="12" r="10" fill="none" stroke-width="3" />
+                    </svg>
+                    正在重写...
+                </span>
+            </button>
+
+            <!-- 结果区域 -->
+            <section class="result-section" id="resultSection">
+                <div class="result-header">
+                    <h2>✅ 重写结果</h2>
+                    <div class="result-actions">
+                        <button class="action-btn" id="copyBtn" title="复制到剪贴板">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" />
+                                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                            </svg>
+                            <span>复制</span>
+                        </button>
+                        <button class="action-btn" id="regenerateBtn" title="重新生成">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M1 4v6h6M23 20v-6h-6" />
+                                <path d="M20.49 9A9 9 0 005.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 013.51 15" />
+                            </svg>
+                            <span>重新生成</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="result-card">
+                    <div class="result-badge" id="styleBadge">
+                        <span class="badge-icon">🤝</span>
+                        <span class="badge-text">礼貌风格</span>
+                    </div>
+                    <div class="result-content" id="resultContent">
+                        <!-- 结果将在这里显示 -->
+                    </div>
+                </div>
+                <div class="result-tips">
+                    <p>💡 <strong>提示：</strong>您可以尝试不同的风格，选择最适合场景的版本。</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- 页脚 -->
+        <footer class="footer">
+            <p>专为自由职业者和个体经营者打造 💼</p>
+            <p class="copyright">© 2026 消息重写助手</p>
+        </footer>
+    </div>
+
+    <!-- 复制成功提示 -->
+    <div class="toast" id="toast">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20,6 9,17 4,12" />
+        </svg>
+        已复制到剪贴板
+    </div>
+
+    <script src="auth.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // 初始化用户信息栏
+        const userBarContainer = document.getElementById('userBar');
+        if (userBarContainer) {
+            renderUserBar(userBarContainer);
+        }
+    </script>
+</body>
+
+</html>
