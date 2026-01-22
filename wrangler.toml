@@ -1,4 +1,4 @@
-name = "message-rewriter"
+name = "newtestrewrite"
 main = "worker.js"
 compatibility_date = "2024-01-01"
 
